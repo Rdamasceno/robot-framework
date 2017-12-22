@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20171221 16:52:48.077" generator="Robot 3.0.2 (Python 2.7.14 on win32)">
+<suite source="C:\development\robot-scripts\Project\amazon\Tests\Blims.robot" id="s1" name="Blims">
+<test id="s1-t1" name="1)User should be be able to get a Rate Shop quote">
+<kw type="setup" name="Begin Web test" library="Common">
+<kw name="Create Webdriver" library="Selenium2Library">
+<doc>Creates an instance of a WebDriver.</doc>
+<arguments>
+<arg>Chrome</arg>
+</arguments>
+<msg timestamp="20171221 16:52:48.249" level="INFO">Creating an instance of the Chrome WebDriver</msg>
+<status status="PASS" endtime="20171221 16:52:52.013" starttime="20171221 16:52:48.249"></status>
+</kw>
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>about:blank</arg>
+</arguments>
+<msg timestamp="20171221 16:52:52.028" level="INFO">Opening url 'about:blank'</msg>
+<status status="PASS" endtime="20171221 16:52:52.070" starttime="20171221 16:52:52.013"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20171221 16:52:53.194" starttime="20171221 16:52:52.070"></status>
+</kw>
+<status status="PASS" endtime="20171221 16:52:53.194" starttime="20171221 16:52:48.249"></status>
+</kw>
+<kw name="Enter login information" library="blims">
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>https://test.newblims.com/</arg>
+</arguments>
+<msg timestamp="20171221 16:52:53.194" level="INFO">Opening url 'https://test.newblims.com/'</msg>
+<status status="PASS" endtime="20171221 16:52:58.509" starttime="20171221 16:52:53.194"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>id=ctl05_imgLogo</arg>
+</arguments>
+<status status="PASS" endtime="20171221 16:52:58.530" starttime="20171221 16:52:58.509"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=ctl05_edUserName</arg>
+<arg>RPRIESTHWC1</arg>
+</arguments>
+<msg timestamp="20171221 16:52:58.530" level="INFO">Typing text 'RPRIESTHWC1' into text field 'id=ctl05_edUserName'</msg>
+<status status="PASS" endtime="20171221 16:52:58.639" starttime="20171221 16:52:58.530"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>ctl05_edPassword</arg>
+<arg>Broussard2</arg>
+</arguments>
+<msg timestamp="20171221 16:52:58.640" level="INFO">Typing text 'Broussard2' into text field 'ctl05_edPassword'</msg>
+<status status="PASS" endtime="20171221 16:52:58.718" starttime="20171221 16:52:58.639"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3s</arg>
+</arguments>
+<msg timestamp="20171221 16:53:01.731" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20171221 16:53:01.731" starttime="20171221 16:52:58.718"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>id=ctl05_btLogin</arg>
+</arguments>
+<status status="PASS" endtime="20171221 16:53:01.731" starttime="20171221 16:53:01.731"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>id=ctl05_btLogin</arg>
+</arguments>
+<msg timestamp="20171221 16:53:01.731" level="INFO">Clicking element 'id=ctl05_btLogin'.</msg>
+<status status="PASS" endtime="20171221 16:53:06.765" starttime="20171221 16:53:01.731"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3s</arg>
+</arguments>
+<msg timestamp="20171221 16:53:09.779" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20171221 16:53:09.779" starttime="20171221 16:53:06.765"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>id=ucMenu_ucShipping_imIcon</arg>
+</arguments>
+<status status="PASS" endtime="20171221 16:53:09.795" starttime="20171221 16:53:09.779"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>id=ucMenu_ucShipping_imIcon</arg>
+</arguments>
+<msg timestamp="20171221 16:53:09.795" level="INFO">Clicking element 'id=ucMenu_ucShipping_imIcon'.</msg>
+<status status="PASS" endtime="20171221 16:53:11.877" starttime="20171221 16:53:09.795"></status>
+</kw>
+<status status="PASS" endtime="20171221 16:53:11.877" starttime="20171221 16:52:53.194"></status>
+</kw>
+<kw name="Enter rate shop information" library="blims">
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=ctl05_ucRateShopWidget_ucQuickRateShop_edOriginZip</arg>
+<arg>77040</arg>
+</arguments>
+<msg timestamp="20171221 16:53:11.878" level="INFO">Typing text '77040' into text field 'id=ctl05_ucRateShopWidget_ucQuickRateShop_edOriginZip'</msg>
+<status status="PASS" endtime="20171221 16:53:12.046" starttime="20171221 16:53:11.878"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=ctl05_ucRateShopWidget_ucQuickRateShop_edDestinationZip</arg>
+<arg>77020</arg>
+</arguments>
+<msg timestamp="20171221 16:53:12.047" level="INFO">Typing text '77020' into text field 'id=ctl05_ucRateShopWidget_ucQuickRateShop_edDestinationZip'</msg>
+<status status="PASS" endtime="20171221 16:53:12.189" starttime="20171221 16:53:12.047"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>ctl05_ucRateShopWidget_ucQuickRateShop_cbProductClassCode1_B-1</arg>
+</arguments>
+<msg timestamp="20171221 16:53:12.190" level="INFO">Clicking element 'ctl05_ucRateShopWidget_ucQuickRateShop_cbProductClassCode1_B-1'.</msg>
+<status status="PASS" endtime="20171221 16:53:12.276" starttime="20171221 16:53:12.190"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2s</arg>
+</arguments>
+<msg timestamp="20171221 16:53:14.282" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20171221 16:53:14.282" starttime="20171221 16:53:12.276"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>id=ctl05_ucRateShopWidget_ucQuickRateShop_cbProductClassCode1_DDD_L_LBI3T0</arg>
+</arguments>
+<status status="PASS" endtime="20171221 16:53:14.313" starttime="20171221 16:53:14.282"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>ctl05_ucRateShopWidget_ucQuickRateShop_cbProductClassCode1_DDD_L_LBI3T0</arg>
+</arguments>
+<msg timestamp="20171221 16:53:14.313" level="INFO">Clicking element 'ctl05_ucRateShopWidget_ucQuickRateShop_cbProductClassCode1_DDD_L_LBI3T0'.</msg>
+<status status="PASS" endtime="20171221 16:53:14.395" starttime="20171221 16:53:14.313"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5s</arg>
+</arguments>
+<msg timestamp="20171221 16:53:19.395" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" endtime="20171221 16:53:19.395" starttime="20171221 16:53:14.395"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=ctl05_ucRateShopWidget_ucQuickRateShop_edProductWeight1_I</arg>
+<arg>5007</arg>
+</arguments>
+<msg timestamp="20171221 16:53:19.396" level="INFO">Typing text '5007' into text field 'id=ctl05_ucRateShopWidget_ucQuickRateShop_edProductWeight1_I'</msg>
+<status status="PASS" endtime="20171221 16:53:19.535" starttime="20171221 16:53:19.395"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>id=ctl05_ucRateShopWidget_ucQuickRateShop_btGetRates_B</arg>
+</arguments>
+<status status="PASS" endtime="20171221 16:53:19.549" starttime="20171221 16:53:19.535"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>id=ctl05_ucRateShopWidget_ucQuickRateShop_btGetRates_B</arg>
+</arguments>
+<msg timestamp="20171221 16:53:19.550" level="INFO">Clicking element 'id=ctl05_ucRateShopWidget_ucQuickRateShop_btGetRates_B'.</msg>
+<status status="PASS" endtime="20171221 16:53:27.643" starttime="20171221 16:53:19.549"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>10s</arg>
+</arguments>
+<msg timestamp="20171221 16:53:37.644" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" endtime="20171221 16:53:37.644" starttime="20171221 16:53:27.644"></status>
+</kw>
+<status status="PASS" endtime="20171221 16:53:37.644" starttime="20171221 16:53:11.878"></status>
+</kw>
+<kw name="Print results" library="blims">
+<kw name="Set Screenshot Directory" library="Selenium2Library">
+<doc>Sets the root output directory for captured screenshots.</doc>
+<arguments>
+<arg>/development/robot-scripts/Project/amazon/Results/Screenshots</arg>
+</arguments>
+<status status="PASS" endtime="20171221 16:53:37.647" starttime="20171221 16:53:37.646"></status>
+</kw>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+<arg>filename= RateShopQuote_{index}.png</arg>
+</arguments>
+<msg timestamp="20171221 16:53:37.985" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshots/%20RateShopQuote_1.png"&gt;&lt;img src="Screenshots/%20RateShopQuote_1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20171221 16:53:37.985" starttime="20171221 16:53:37.647"></status>
+</kw>
+<status status="PASS" endtime="20171221 16:53:37.985" starttime="20171221 16:53:37.645"></status>
+</kw>
+<kw type="teardown" name="End Web test" library="Common">
+<kw name="Close Browser" library="Selenium2Library">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20171221 16:53:41.182" starttime="20171221 16:53:37.986"></status>
+</kw>
+<status status="PASS" endtime="20171221 16:53:41.182" starttime="20171221 16:53:37.986"></status>
+</kw>
+<doc>This is some basic information about the test</doc>
+<tags>
+<tag>Current</tag>
+</tags>
+<status status="PASS" endtime="20171221 16:53:41.182" critical="yes" starttime="20171221 16:52:48.233"></status>
+</test>
+<doc>Simple example using SeleniumLibrary.</doc>
+<status status="PASS" endtime="20171221 16:53:41.182" starttime="20171221 16:52:48.093"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+<stat fail="0" pass="1">Current</stat>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Blims" pass="1">Blims</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
