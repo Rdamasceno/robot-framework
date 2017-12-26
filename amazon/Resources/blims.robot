@@ -28,6 +28,9 @@ Enter rate shop information
     Wait Until Page Contains Element    id=ctl05_ucRateShopWidget_ucQuickRateShop_btGetRates_B
     click element   id=ctl05_ucRateShopWidget_ucQuickRateShop_btGetRates_B
     Sleep  10s
+    click element   id=ctl05_ucSearch_ctl02_pcClientSpecificRateShop_PWC-1
+    Sleep  10s
+
 Print results
     Set Screenshot Directory  /development/robot-scripts/Project/amazon/Results/Screenshots
     Capture Page Screenshot  filename= RateShopQuote_{index}.png

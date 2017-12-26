@@ -9,13 +9,15 @@ Test Teardown  End Web test
 *** Variables ***
 
 *** Test Cases ***
-1)User should be be able to get a Rate Shop quote
+     #### Rate Shop ####
+1)User should be be able to get a Rate Shop quote HWC1 5000lb limit
     [Documentation]  This is some basic information about the test
-    [Tags]  Current
+    [Tags]  Smoke
 
     blims.Enter login information
     blims.Enter rate shop information
     blims.Print results
+    #### Create Shipment ####
 2)Create a Shipment Quote/ BOL for Parcel Documents Shipment
     [Documentation]  This is some basic information about the test
     [Tags]  Smoke
@@ -77,6 +79,7 @@ Test Teardown  End Web test
         Carrier LT
         Equipment and Accessories
      Finish/Print
+     #### Report Tab ####
 7)Report BOLDataExchange with Invoice
    [Documentation]  This is some basic information about the test
     [Tags]  Smoke
