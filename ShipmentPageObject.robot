@@ -82,7 +82,6 @@ Set Line of Business
 Set Customer Name (TSUC)
     input text       ctl05$ucShipmentEntryControl$rpAdditionalInfo$pnlAdditionalInfo$edApprovedBy    Raphael
 
-
 Click on the Finish/Print
     click element   id=ctl05_ucShipmentEntryControl_btCreateBOL_B
     sleep  1s

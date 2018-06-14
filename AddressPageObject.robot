@@ -33,3 +33,4 @@ Address Book Button on Shipment Tab Screen
      Click Link     id = ctl05_ucRateShopWidget_ucQuickRateShop_btShowAddressBook
 Click on the Ship To section
     click element  id=ctl05_ucShipmentEntryControl_rpAddress_HTC_hlAddress
+
