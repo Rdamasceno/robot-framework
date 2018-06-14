@@ -1,5 +1,6 @@
 *** Settings ***
-Library  SeleniumLibrary
+Library   SeleniumLibrary
+Library     String
 Resource  C:/development/robot-scripts/test/Resources/LoginPageObject.robot
 Resource  C:/development/robot-scripts/test/Resources/ShipmentPageObject.robot
 Resource  C:/development/robot-scripts/test/Resources/CarrierPageObject.robot
@@ -16,8 +17,8 @@ Enter login information HWC1
     Enter USERNAME
     Enter PASSWORD
     SLEEP  3s
-    Wait Until Page Contains Element    id=ctl05_btLogin
-    Click Element    id=ctl05_btLogin
+    Wait Until Page Contains Element  id=ctl05_btLogin
+    Click Element  id=ctl05_btLogin
     SLEEP  3s
 Enter login information
     Go to   https://QA.newblims.com/
@@ -57,8 +58,8 @@ Enter login information TSUC
     Go to Shipments Tab
 
 Enter login information WPII
-    Go to  https://QA.newblims.com/
-    # https://test.newblims.com/
+    Go to    https://test.newblims.com/
+    # https://QA.newblims.com/
     Verify Page Loaded
     input text  id=ctl05_edUserName  @{login}[4]
     Enter PASSWORD
@@ -92,6 +93,38 @@ Enter rate shop information less 5000
     Sleep  10s
     click image   id=ucHeader_ucLocation_cbClientID_B-1Img
     Sleep  10s
+
+Carrier quote history WP
+    input text  id=ctl05_ucRateShopWidget_ucQuickRateShop_edOriginZip   77040
+    input text  id=ctl05_ucRateShopWidget_ucQuickRateShop_edDestinationZip   77020
+    click element  ctl05_ucRateShopWidget_ucQuickRateShop_cbProductClassCode1_B-1
+    SLEEP  2s
+    wait until element is visible  id=ctl05_ucRateShopWidget_ucQuickRateShop_cbProductClassCode1_DDD_L_LBI3T0
+    click element  ctl05_ucRateShopWidget_ucQuickRateShop_cbProductClassCode1_DDD_L_LBI3T0
+    SLEEP  5s
+    input text  id=ctl05_ucRateShopWidget_ucQuickRateShop_edProductWeight1_I  500
+    Wait Until Page Contains Element    id=ctl05_ucRateShopWidget_ucQuickRateShop_btGetRates_B
+    click element   id=ctl05_ucRateShopWidget_ucQuickRateShop_btGetRates_B
+    Sleep  10s
+   ${QuoteNumber}=    Execute Javascript  return document.getElementsByClassName("QuoteNumber")[0].innerHTML;
+    Sleep  5s
+    click element  id=ctl05_ucSearch_ctl02_hpCarrierCuoteHistory
+    input text   xpath=//*[@id="ctl05_ucSearch_ctl02_edQuoteNumber"]  ${QuoteNumber}
+
+    Capture Page Screenshot  filename= RateShopInfo_{index}.png
+    Click element  xpath=//*[@id="ctl05_ucSearch_btSearch_CD"]
+    Sleep  5s
+    Execute Javascript      window.scrollTo(0, 500);
+    Capture Page Screenshot  filename= RateShopInfo_{index}.png
+    click link  xpath=//*[@id="ctl05_ucGrid_dxGrid_DXDataRow0"]/td[1]/a
+     Sleep  5s
+     Execute Javascript      window.scrollTo(0, 500);
+    Capture Page Screenshot  filename= RateShopInfo_{index}.png
+
+
+
+
+
 Enter normal rate shop information
     input text  id=ctl05_ucRateShopWidget_ucQuickRateShop_edOriginZip   77040
     input text  id=ctl05_ucRateShopWidget_ucQuickRateShop_edDestinationZip   77020
@@ -268,6 +301,7 @@ Insert address WP
     input text    id=ctl05_ucShipmentEntryControl_rpAddress_pnlAddress_edDST_Company   alpha orgnasization
     input text     ctl05_ucShipmentEntryControl_rpAddress_pnlAddress_edDST_Contact   raphael
     input text     ctl05_ucShipmentEntryControl_rpAddress_pnlAddress_edDST_Phone_I   4232343333
+    input text     ctl05$ucShipmentEntryControl$rpAddress$pnlAddress$edDST_Address1   105st west
     Set Screenshot Directory    C:/development/robot-scripts/Project/amazon/Results/Screenshots
     capture page screenshot   filename= Address_{index}.png
 
@@ -458,6 +492,7 @@ Request For Quote (RFQ)
     click element   ctl05_ucRFQEdit_ctl00_btSave
     sleep  3s
     Dismiss Alert   accept=True
+    Execute Javascript      window.scrollTo(0, 300);
     capture page screenshot         filename= RFQ_{index}.png
 Transportation Mode
             sleep  5s
@@ -586,3 +621,254 @@ Insert Product
         wait until page contains element     id = ctl05_ucShipmentEntryControl_rpProducts_pnlProducts_gdProducts_dxGrid_cell0_6___gen__gdProducts__UOMID__002D0032003100340037003400380033003600340032_DDD_L_LBI1T0
         sleep  3s
         click element                   id = ctl05_ucShipmentEntryControl_rpProducts_pnlProducts_gdProducts_dxGrid_cell0_6___gen__gdProducts__UOMID__002D0032003100340037003400380033003600340032_DDD_L_LBI1T0
+
+
+Result of RFQ
+
+    click image  id=ucMenu_ucShipping_imActiveIcon
+    click image  id=ctl05_ucRFQs_imIcon
+    Execute Javascript      window.scrollTo(0, 500);
+    Capture Page Screenshot  filename= RFQ_{index}.png
+
+
+Individual Quick Search
+    ${BOLNum}=    Execute Javascript  return document.getElementById("ctl05_ucConfirm_lbBOLNumber").innerHTML;
+    Sleep  10s
+    select frame    xpath=//*[@id="pcMain_CIF-1"]
+    Sleep  5s
+    click element   id=pcMain_HCB-1
+    Sleep  5s
+    click image  id=ucMenu_ucSales_imIcon
+    Sleep  3s
+    click image  id=ucMenu_ucShipping_imIcon
+    input text   xpath=//*[@id="ctl05_edTrackingParam"]  ${BOLNum}
+    Capture Page Screenshot  filename= Individual_Quick_Search{index}.png
+    click element  id=ctl05_btSearchShipment_CD
+    Execute Javascript      window.scrollTo(200, 500);
+    Capture Page Screenshot  filename= Individual_Quick_Search{index}.png
+    Click element   id=ctl05_ucGrid_ucButtonPanel_btExport_BTC
+
+
+Click on Facebook icon
+
+    click link  id=ucFooter_ucFollowUs_rpFollowUs_ctl00_HyperLink1
+    Sleep  3s
+    Select Window  url=https://www.facebook.com/BroussardLogistics
+    Capture Page Screenshot  filename= facebook{index}.png
+
+Click on LinkedIn icon
+
+    click link  id=ucFooter_ucFollowUs_rpFollowUs_ctl01_HyperLink1
+    Sleep  3s
+    Select Window   locator=NEW
+    Capture Page Screenshot  filename= LinkedIn{index}.png
+
+Click on twitter icon
+
+    click link  id=ucFooter_ucFollowUs_rpFollowUs_ctl02_HyperLink1
+    Sleep  10s
+    Select Window   locator=NEW
+    Capture Page Screenshot  filename= twitter{index}.png
+Click on Tell a Friend about this Site icon
+    click link  ucFooter_hlTellFriend
+    Sleep  3s
+    input text  xpath= //*[@id="ucFooter_pnTFSendMailControl_edTFEmailAddress_I"]        rdamasceno@webcreek.com
+    click element  ucFooter_pnTFSendMailControl_btSendTFEmail_CD
+    Capture Page Screenshot  filename= emailfriend{index}.png
+logout link
+    CLICK link   ucFooter_hlLogout
+    Capture Page Screenshot  filename= logout{index}.png
+
+Click on Account Specialist
+       click element  xpath=//*[@id="ucMenu_hlAccount"]
+
+Click on Website Support
+       click element   xpath=//*[@id="ucMenu_hlSupport"]
+Click on Tips and Training
+    click element   xpath=//*[@id="ucMenu_pnContacts"]/div/table/tbody/tr/td[1]/a
+    Select Window   locator=NEW
+    Capture Page Screenshot  filename= TipsandTraining{index}.png
+Click on Client
+    click element   xpath=//*[@id="ucHeader_ucLocation_cbClientID_B-1Img"]
+    Capture Page Screenshot  filename= Client{index}.png
+Click on location
+    click image  xpath=//*[@id="ucHeader_ucLocation_cbLocationID_B-1Img"]
+    Capture Page Screenshot  filename= location{index}.png
+Click on header search
+        input text   xpath=//*[@id="ucHeader_ucHeaderSearch_edSearchFor"]   shipments
+        Capture Page Screenshot  filename= HeaderSearch{index}.png
+        click element   xpath=//*[@id="ucHeader_ucHeaderSearch_btSearch"]
+        Sleep  10s
+        Capture Page Screenshot  filename= HeaderSearch{index}.png
+Click on Sale Tab
+    click element   xpath=//*[@id="ucMenu_ucSales_imIcon"]
+    Capture Page Screenshot  filename= Sales{index}.png
+
+insert Origin Zip
+        input text    xpath=//*[@id="ctl05_ucRateShopWidget_ucQuickRateShop_edOriginZip"]  77035
+
+insert Destination Zip
+        input text    xpath=//*[@id="ctl05_ucRateShopWidget_ucQuickRateShop_edDestinationZip"]  73344
+
+Set Class WP
+    click element  id=ctl05_ucRateShopWidget_ucQuickRateShop_cbProductClassCode1_B-1
+    sleep  3s
+    click element  xpath=//*[@id="ctl05_ucRateShopWidget_ucQuickRateShop_cbProductClassCode1_DDD_L_LBI5T0"]
+     Capture Page Screenshot  filename= class{index}.png
+Set Weight WP
+   input text  id=ctl05_ucRateShopWidget_ucQuickRateShop_edProductWeight1_I  500
+   Capture Page Screenshot  filename= weight{index}.png
+click on get rate
+        click element  id=ctl05_ucRateShopWidget_ucQuickRateShop_btGetRates_CD
+        Sleep  10s
+        Capture Page Screenshot  filename= quoteresult{index}.png
+
+
+In Transit/Delivered
+    ${BOLNum}=    Execute Javascript  return document.getElementById("ctl05_ucConfirm_lbBOLNumber").innerHTML;
+    Sleep  10s
+    select frame    xpath=//*[@id="pcMain_CIF-1"]
+    Sleep  5s
+    click element    xpath=//*[@id="pcMain_HCB-1"]
+    Sleep  5s
+    click image  id=ucMenu_ucSales_imIcon
+    Sleep  3s
+    click element   xpath=//*[@id="ctl05_ucShipmentTracking_hlMenuItem"]
+    Sleep  3s
+    input text   xpath=//*[@id="ctl05_ucSearch_ctl02_edSearchString"]    ${BOLNum}
+    Capture Page Screenshot  filename= BOLNum{index}.png
+    click element   id=ctl05_ucSearch_btSearch_B
+    Sleep  5s
+    Execute Javascript      window.scrollTo(0, 500);
+    Capture Page Screenshot  filename= BOLNum{index}.png
+    click element   xpath=//*[@id="ctl05_ucGrid_ucButtonPanel_btExport_B"]
+Click on NewSalesQuote
+    Sleep  5s
+    click element  xpath=//*[@id="ctl05_ucNewSalesQuote_imIcon"]
+
+Terms & Address Information
+    input text    xpath=//*[@id="ctl05_ucWizard_ctl02_ctl01_edCustomerName"]  Raphael Damasceno
+    input text   xpath=//*[@id="ctl05_ucWizard_ctl02_ctl01_edDST_Company"]    test company
+    input text   xpath=//*[@id="ctl05_ucWizard_ctl02_ctl01_edDST_Zip"]    77040
+    input text   xpath=//*[@id="ctl05_ucWizard_ctl02_ctl01_edDST_Address1"]  105st west
+   input text    xpath=//*[@id="ctl05_ucWizard_ctl02_ctl01_edDST_Contact"]  rafa
+    input text   xpath=//*[@id="ctl05_ucWizard_ctl02_ctl01_edDST_Phone"]   1234567894
+    Capture Page Screenshot  filename= TermsAddressInformation{index}.png
+    click element  xpath=//*[@id="ctl05_ucWizard_ctl02_StartNavigationTemplateContainerID_ctl01_CD"]
+    sleep  10s
+Product Information
+
+        click element  xpath=//*[@id="ctl05_ucWizard_ctl02_ctl02_gdProducts_dxGrid_cell0_0___gen__gdProducts__ProductShippedID__002D0032003100340037003400380033003600340032_B-1Img"]
+         sleep  2s
+        click element  xpath=//*[@id="ctl05_ucWizard_ctl02_ctl02_gdProducts_dxGrid_cell0_0___gen__gdProducts__ProductShippedID__002D0032003100340037003400380033003600340032_DDD_L_LBI5T0"]
+        click element  xpath= //*[@id="ctl05_ucWizard_ctl02_ctl02_gdProducts_dxGrid_cell0_3___gen__gdProducts__Quantity__002D0032003100340037003400380033003600340032_B-2Img"]
+         sleep  2s
+        click element  xpath= //*[@id="ctl05_ucWizard_ctl02_ctl02_gdProducts_dxGrid_cell0_4___gen__gdProducts__UOMID__002D0032003100340037003400380033003600340032_B-1Img"]
+        sleep  2s
+        click element  xpath= //*[@id="ctl05_ucWizard_ctl02_ctl02_gdProducts_dxGrid_cell0_4___gen__gdProducts__UOMID__002D0032003100340037003400380033003600340032_DDD_L_LBI2T0"]
+         sleep  2s
+        click element  xpath= //*[@id="ctl05_ucWizard_ctl02_ctl02_gdProducts_dxGrid_cell0_9___gen__gdProducts__Weight__002D0032003100340037003400380033003600340032_B-2Img"]
+        sleep  2s
+        click element  xpath=//*[@id="ctl05_ucWizard_ctl02_ctl02_gdProducts_dxGrid_cell0_10___gen__gdProducts__TotalHandlingUnits__002D0032003100340037003400380033003600340032_B-2Img"]
+        Capture Page Screenshot  filename= ProductInformation{index}.png
+         click element  xpath=//*[@id="ctl05_ucWizard_ctl02_StepNavigationTemplateContainerID_ctl02_CD"]
+Find a Carrier
+        sleep  40s
+        click element  xpath= //*[@id="ctl05_ucWizard_ctl02_ctl03_ucQuickRateShop_dxGrid_DXSelBtn0_D"]
+        Capture Page Screenshot  filename= Carrier{index}.png
+        click element  xpath= //*[@id="ctl05_ucWizard_ctl02_StepNavigationTemplateContainerID_ctl02_B"]
+        sleep  40s
+        select frame    xpath=//*[@id="pcMain_CIF-1"]
+         Execute Javascript      window.scrollTo(0, 0);
+        Capture Page Screenshot  filename= SalesQuoteRateConfirmation{index}.png
+
+Click on Create Invoice
+        click element   xpath=//*[@id="ctl05_ucCreateInvoice_imIcon"]
+        Capture Page Screenshot  filename= CreateInvoice{index}.png
+Click on BOL Number
+         click element  xpath=//*[@id="ctl05_ucGrid_dxGrid_DXDataRow0"]/td[1]/a
+         Capture Page Screenshot  filename= BOLNumber{index}.png
+Click on CreateInvoice button
+        click element    xpath=//*[@id="ctl05_pcInvoice_btCreateInvoice_CD"]
+        Select Window   locator=NEW
+        sleep  20s
+        Capture Page Screenshot  filename= CreateInvoice{index}.png
+Click on Report CreateInvoice
+        click element    xpath=//*[@id="ctl05_ucReports_ucCreateInvoice_imIcon"]
+        Capture Page Screenshot  filename= CreateInvoice{index}.png
+        sleep  5s
+        click element    xpath=//*[@id="ctl05_ucReports_pcInvoice_btCreateInvoice_B"]
+Click on site Usage
+           click element    xpath=//*[@id="ctl05_ucReports_ucReportUsage_imgMain"]
+           Execute Javascript      window.scrollTo(0, 500);
+            Capture Page Screenshot  filename= siteUsage{index}.png
+            sleep  3s
+Click on Report Export
+            click element    xpath=//*[@id="ctl05_ucGrid_ucButtonPanel_btExport_BTC"]
+            sleep  15s
+             Capture Page Screenshot  filename= ReportExport{index}.png
+
+Print site Usage
+            sleep  15s
+            click element    xpath=//*[@id="ctl05_ucGrid_ucButtonPanel_btPrint_BImg"]
+            sleep  15s
+             Capture Page Screenshot  filename= PrintsiteUsage{index}.png
+
+Click on Carrier rate quotes requested
+        click element    xpath=//*[@id="ctl05_ucReports_ucRateQuotes_imgMain"]
+        Sleep  3s
+         Capture Page Screenshot  filename= Carrierratequotesrequested{index}.png
+Click on CARRIER RATE QUOTES REQUESTED Report Export
+             Sleep  10s
+          click element    xpath=//*[@id="ctl05_ucGrid_ucButtonPanel_btExport_BImg"]
+         Sleep  15s
+         Capture Page Screenshot  filename= Carrierratequotesrequested{index}.png
+CARRIER RATE QUOTES REQUESTED Set date
+             click element    xpath=//*[@id="ctl05_ucSearch_ctl02_deDateFrom_B-1Img"]
+             Sleep  10s
+         Capture Page Screenshot  filename= date{index}.png
+         click element    xpath=//*[@id="ctl05_ucSearch_ctl02_deDateFrom_DDD_C_BT"]/table
+         Capture Page Screenshot  filename= date{index}.png
+           Sleep  3s
+         click element    xpath=//*[@id="ctl05_ucSearch_btSearch_CD"]
+
+Click on Shipment created
+         click element     xpath=//*[@id="ctl05_ucReports_ucShipments_imgMain"]
+
+Click on Analytics
+    click element    xpath=//*[@id="ctl05_ucReports_ucGenericDashboard_imgMain"]
+    Capture Page Screenshot  filename= Analytics{index}.png
+    Sleep  3s
+    click element    xpath=//*[@id="ctl05_ucGenericDashboard_btPrintDashboard_CD"]
+    Sleep  3s
+    click element    xpath=//*[@id="ctl05_ucGenericDashboard_pcPrint_btPrint"]
+    Capture Page Screenshot  filename= Analytics{index}.png
+Click on Email Freight Bill info
+
+    click element    xpath=//*[@id="ctl05_ctl01_btSendFreighBill_B"]
+Email freight bill info
+    input text   xpath=//*[@id="ctl05_ctl01_pcSendFB_edEmailAddresses_I"]  rdamasceno@webcreek.com
+    Capture Page Screenshot  filename= email{index}.png
+    click element    xpath=//*[@id="ctl05_ctl01_pcSendFB_btSend_B"]
+Click on Admin
+    click element    xpath=//*[@id="ucMenu_ucAdmin_imIcon"]
+     Capture Page Screenshot  filename= admin{index}.png
+Click on Products
+    click element    xpath=//*[@id="ctl05_ucProducts_hlMenuItem"]
+    Capture Page Screenshot  filename= Products{index}.png
+Add product
+    click element    xpath=//*[@id="ctl05_ucGrid_ucButtonPanel_btCreateNew_B"]
+    Capture Page Screenshot  filename= Products{index}.png
+    sleep  5s
+    select frame    xpath=//*[@id="pcMain_CIF-1"]
+     ${RandomString}=         Generate Random String    10    [LETTERS]
+    input text   xpath=//*[@id="ctl05_ucEdit_edProductDescription"]    ${RandomString}
+    sleep  3s
+    click element    xpath=//*[@id="ctl05_ucEdit_cbProductClassCode_B-1Img"]
+    sleep  3s
+    click element   xpath=//*[@id="ctl05_ucEdit_cbProductClassCode_DDD_L_LBI1T0"]
+    Capture Page Screenshot  filename= Products{index}.png
+    click element   xpath=//*[@id="ctl05_ucEdit_ctl01_btSave_B"]
+    sleep  10s
+    Capture Page Screenshot  filename= Products{index}.png
+
